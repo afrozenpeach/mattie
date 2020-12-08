@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core'
 import { SinglePostQuery, SinglePostGQL } from 'src/generated/graphql'
 import { Observable, Subscription } from 'rxjs'
 import { map } from 'rxjs/operators'
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser'
 import { OembedService } from 'src/app/shared/oembed/oembed.service'
 
@@ -20,7 +20,8 @@ export class PostComponent implements OnInit, OnDestroy {
     private postGQL: SinglePostGQL,
     private route: ActivatedRoute,
     private sanitizer: DomSanitizer,
-    private oembedService: OembedService
+    private oembedService: OembedService,
+    private router: Router
   ) {
     this.route.params.subscribe((params) => {
       const slug = params['slug']
@@ -58,6 +59,8 @@ export class PostComponent implements OnInit, OnDestroy {
               })
             }
           }
+        } else {
+          this.router.navigate(['/404'])
         }
       })
     })

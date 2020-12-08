@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router'
+import { NotfoundComponent } from './shared/notfound/notfound.component'
 
 const routes: Routes = [
   {
@@ -17,6 +18,8 @@ const routes: Routes = [
     loadChildren: () =>
       import('./boardgames/boardgames.module').then((m) => m.BoardgamesModule),
   },
+  {path: '404', component: NotfoundComponent},
+  {path: '**', redirectTo: '/404'}
 ]
 
 @NgModule({
