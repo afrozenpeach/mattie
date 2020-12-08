@@ -1,0 +1,3 @@
+<div *ngFor="let p of posts | async">
+    <a href="/blog/post/{{p?.slug}}">{{p?.title}}</a>
+</div>

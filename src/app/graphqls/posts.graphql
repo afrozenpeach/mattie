@@ -1,0 +1,15 @@
+query posts {
+  blogPosts(
+    sort: "postDate:desc"
+  ) {
+    id
+    headerPhoto {
+      id
+      name
+    }
+    postDate
+    title
+    featured
+    slug
+  }
+}
