@@ -1,7 +1,5 @@
 query posts {
-  blogPosts(
-    sort: "postDate:desc"
-  ) {
+  blogPosts(sort: "postDate:desc") {
     id
     headerPhoto {
       id

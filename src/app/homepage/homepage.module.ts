@@ -4,11 +4,11 @@ import { HomepageComponent } from './homepage/homepage.component'
 import { RouterModule, Routes } from '@angular/router'
 
 const homepageRoutes: Routes = [
-    { path: '', component: HomepageComponent, pathMatch: 'full' }
+  { path: '', component: HomepageComponent, pathMatch: 'full' },
 ]
 
 @NgModule({
-    declarations: [HomepageComponent],
-    imports: [CommonModule, RouterModule.forChild(homepageRoutes)],
+  declarations: [HomepageComponent],
+  imports: [CommonModule, RouterModule.forChild(homepageRoutes)],
 })
 export class HomepageModule {}

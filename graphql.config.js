@@ -1,3 +1,3 @@
 module.exports = {
-  schema: 'https://cms.mattie.lgbt/graphql'
-};
+  schema: 'https://cms.mattie.lgbt/graphql',
+}

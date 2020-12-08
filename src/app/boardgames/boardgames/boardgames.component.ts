@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core'
 
 @Component({
   selector: 'app-boardgames',
   templateUrl: './boardgames.component.html',
-  styleUrls: ['./boardgames.component.scss']
+  styleUrls: ['./boardgames.component.scss'],
 })
 export class BoardgamesComponent implements OnInit {
+  constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit(): void {}
 }

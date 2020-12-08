@@ -1,8 +1,5 @@
 query singlePost($whereClause: JSON!) {
-  blogPosts(
-    where: $whereClause,
-    limit: 1
-  ) {
+  blogPosts(where: $whereClause, limit: 1) {
     id
     headerPhoto {
       id
