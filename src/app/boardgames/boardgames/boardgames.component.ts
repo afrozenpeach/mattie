@@ -45,14 +45,10 @@ export class BoardgamesComponent implements OnInit {
   redirect(url: string | null | undefined) {
     if (url) {
       if (url.startsWith('http')) {
-        this.router.navigate(['/externalRedirect', { externalUrl: url }], {
-          skipLocationChange: true,
-        })
+        window.open(url)
       } else {
         this.router.navigate([url])
       }
     }
-
-    event?.preventDefault()
   }
 }
