@@ -18,8 +18,8 @@ const routes: Routes = [
     loadChildren: () =>
       import('./boardgames/boardgames.module').then((m) => m.BoardgamesModule),
   },
-  {path: '404', component: NotfoundComponent},
-  {path: '**', redirectTo: '/404'}
+  { path: '404', component: NotfoundComponent },
+  { path: '**', redirectTo: '/404' },
 ]
 
 @NgModule({
