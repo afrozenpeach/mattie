@@ -1,1 +1,3 @@
-<p>boardgames works!</p>
+<div *ngFor="let g of boardgames | async">
+  {{ g?.title }}
+</div>

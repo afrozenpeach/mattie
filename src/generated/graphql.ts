@@ -1602,6 +1602,24 @@ export enum CacheControlScope {
   Private = 'PRIVATE'
 }
 
+export type BoardgamesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type BoardgamesQuery = (
+  { __typename?: 'Query' }
+  & { boardGames?: Maybe<Array<Maybe<(
+    { __typename?: 'BoardGames' }
+    & Pick<BoardGames, 'id' | 'title' | 'subtitle' | 'status' | 'content'>
+    & { primaryPhoto?: Maybe<(
+      { __typename?: 'UploadFile' }
+      & Pick<UploadFile, 'id' | 'url'>
+    )>, buttons?: Maybe<Array<Maybe<(
+      { __typename?: 'ComponentExtrasButton' }
+      & Pick<ComponentExtrasButton, 'url' | 'text'>
+    )>>> }
+  )>>> }
+);
+
 export type PostsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1634,6 +1652,36 @@ export type SinglePostQuery = (
   )>>> }
 );
 
+export const BoardgamesDocument = gql`
+    query boardgames {
+  boardGames(sort: "title:asc") {
+    id
+    title
+    subtitle
+    status
+    content
+    primaryPhoto {
+      id
+      url
+    }
+    buttons {
+      url
+      text
+    }
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class BoardgamesGQL extends Apollo.Query<BoardgamesQuery, BoardgamesQueryVariables> {
+    document = BoardgamesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
 export const PostsDocument = gql`
     query posts {
   blogPosts(sort: "postDate:desc") {

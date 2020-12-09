@@ -1,0 +1,17 @@
+query boardgames {
+  boardGames(sort: "title:asc") {
+    id
+    title
+    subtitle
+    status
+    content
+    primaryPhoto {
+      id
+      url
+    }
+    buttons {
+      url
+      text
+    }
+  }
+}
