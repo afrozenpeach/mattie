@@ -8,9 +8,17 @@
       src="https://cms.mattie.lgbt{{ g?.primaryPhoto?.url }}"
     />
     <mat-card-content [innerHTML]="boardgamesContent[i]"></mat-card-content>
-    <mat-card-content
-      ><span class="statusSpan">Status - </span
-      >{{ g?.status }}</mat-card-content
-    >
+    <mat-card-content>
+      <span class="statusSpan">Status - </span>{{ g?.status }}
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-button
+        *ngFor="let b of g?.buttons"
+        (click)="redirect(b?.url)"
+      >
+        {{ b?.text }}
+      </button>
+    </mat-card-actions>
   </mat-card>
 </div>

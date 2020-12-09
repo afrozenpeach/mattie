@@ -3,6 +3,7 @@ import { BoardgamesQuery, BoardgamesGQL } from 'src/generated/graphql'
 import { Observable, Subscription } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-boardgames',
@@ -16,7 +17,8 @@ export class BoardgamesComponent implements OnInit {
 
   constructor(
     private boardgamesGQL: BoardgamesGQL,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private router: Router
   ) {
     this.boardgames = this.boardgamesGQL
       .watch()
@@ -39,4 +41,18 @@ export class BoardgamesComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  redirect(url: string | null | undefined) {
+    if (url) {
+      if (url.startsWith('http')) {
+        this.router.navigate(['/externalRedirect', { externalUrl: url }], {
+          skipLocationChange: true,
+        })
+      } else {
+        this.router.navigate([url])
+      }
+    }
+
+    event?.preventDefault()
+  }
 }
