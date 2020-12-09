@@ -15,6 +15,7 @@ export class PostComponent implements OnInit, OnDestroy {
   post: Observable<SinglePostQuery['blogPosts']> | undefined
   postSubscription: Subscription | undefined
   postContent: SafeHtml | undefined
+  oembedSubscriptions: Subscription[] = []
 
   constructor(
     private postGQL: SinglePostGQL,
@@ -48,15 +49,22 @@ export class PostComponent implements OnInit, OnDestroy {
             for (const match of workingContent.matchAll(
               this.oembedService.oembedRegex
             )) {
-              this.oembedService.getOembed(match[1]).subscribe((oembed) => {
-                workingContent = workingContent?.replace(match[0], oembed.html)
-
-                if (workingContent) {
-                  this.postContent = this.sanitizer.bypassSecurityTrustHtml(
-                    workingContent
+              let oembedSubscription = this.oembedService
+                .getOembed(match[1])
+                .subscribe((oembed) => {
+                  workingContent = workingContent?.replace(
+                    match[0],
+                    oembed.html
                   )
-                }
-              })
+
+                  if (workingContent) {
+                    this.postContent = this.sanitizer.bypassSecurityTrustHtml(
+                      workingContent
+                    )
+                  }
+                })
+
+              this.oembedSubscriptions.push(oembedSubscription)
             }
           }
         } else {
@@ -70,5 +78,9 @@ export class PostComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.postSubscription?.unsubscribe()
+
+    for (const subscription of this.oembedSubscriptions) {
+      subscription.unsubscribe()
+    }
   }
 }
