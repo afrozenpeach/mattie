@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, OnDestroy, OnInit } from '@angular/core'
 import { BoardgamesQuery, BoardgamesGQL } from 'src/generated/graphql'
 import { Observable, Subscription } from 'rxjs'
 import { map } from 'rxjs/operators'
@@ -10,7 +10,7 @@ import { Router } from '@angular/router'
   templateUrl: './boardgames.component.html',
   styleUrls: ['./boardgames.component.scss'],
 })
-export class BoardgamesComponent implements OnInit {
+export class BoardgamesComponent implements OnInit, OnDestroy {
   boardgames: Observable<BoardgamesQuery['boardGames']> | undefined
   boardgamesSubscription: Subscription | undefined
   boardgamesContent: SafeHtml[] = []
@@ -24,7 +24,7 @@ export class BoardgamesComponent implements OnInit {
       .watch()
       .valueChanges.pipe(map((result) => result.data.boardGames))
 
-    this.boardgames.subscribe((result) => {
+    this.boardgamesSubscription = this.boardgames.subscribe((result) => {
       result?.forEach((g, i) => {
         let workingContent = g?.content.replace(
           'src="/uploads/',
@@ -41,6 +41,10 @@ export class BoardgamesComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
+  ngOnDestroy(): void {
+    this.boardgamesSubscription?.unsubscribe()
+  }
 
   redirect(url: string | null | undefined) {
     if (url) {
