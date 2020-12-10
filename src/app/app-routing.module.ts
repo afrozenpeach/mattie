@@ -1,5 +1,5 @@
-import { InjectionToken, NgModule } from '@angular/core'
-import { Routes, RouterModule, ActivatedRouteSnapshot } from '@angular/router'
+import { NgModule } from '@angular/core'
+import { Routes, RouterModule } from '@angular/router'
 import { NotfoundComponent } from './shared/notfound/notfound.component'
 
 const routes: Routes = [
