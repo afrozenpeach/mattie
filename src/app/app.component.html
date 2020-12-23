@@ -1,4 +1,56 @@
-<a href="/">Home</a> | <a href="/blog">Blog</a> |
-<a href="/boardgames">Board Games</a>
+<mat-toolbar color="primary" class="mat-elevation-z8">
+  <button
+    mat-icon-button
+    [matMenuTriggerFor]="menu"
+    aria-label="Menu icon"
+    *ngIf="isHandset$ | async"
+  >
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item [routerLink]="'/'">
+      <i class="fas fa-home menuIcon"></i>
+      <span>Home</span>
+    </button>
+    <button mat-menu-item [routerLink]="'/blog'">
+      <i class="fas fa-comment-alt menuIcon"></i>
+      <span>Blog</span>
+    </button>
+    <button mat-menu-item [routerLink]="'/boardgames'">
+      <i class="fas fas fa-dice menuIcon"></i>
+      <span>Board Games</span>
+    </button>
+  </mat-menu>
+  <span>Mattie Schraeder</span>
+  <span class="spacer"></span>
+  <ul class="menu" *ngIf="!(isHandset$ | async)">
+    <li [ngClass]="{ active: this.router.url === '/' }">
+      <a href="/"><i class="fas fa-home menuIcon"></i>Home</a>
+    </li>
+    <li [ngClass]="{ active: this.router.url.startsWith('/blog') }">
+      <a href="/blog"><i class="fas fa-comment-alt menuIcon"></i>Blog</a>
+    </li>
+    <li [ngClass]="{ active: this.router.url.startsWith('/boardgames') }">
+      <a href="/boardgames"><i class="fas fa-dice menuIcon"></i>Board Games</a>
+    </li>
+  </ul>
+  <span class="spacer"></span>
+  <button
+    mat-icon-button
+    matTooltip="Twitter"
+    aria-label="Twitter icon"
+    onclick="window.open('https://twitter.com/afrozenpeach')"
+  >
+    <i class="fab fa-twitter"></i>
+  </button>
+  <button
+    mat-icon-button
+    matTooltip="Discord"
+    aria-label="Discord icon"
+    onclick="window.open('https://discord.gg/KGWaqvW')"
+  >
+    <i class="fab fa-discord"></i>
+  </button>
+</mat-toolbar>
 
 <router-outlet></router-outlet>
