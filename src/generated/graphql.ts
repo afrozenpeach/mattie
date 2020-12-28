@@ -1627,7 +1627,7 @@ export type FeaturedPostsQuery = (
   { __typename?: 'Query' }
   & { blogPosts?: Maybe<Array<Maybe<(
     { __typename?: 'BlogPost' }
-    & Pick<BlogPost, 'id' | 'postDate' | 'title' | 'featured' | 'slug'>
+    & Pick<BlogPost, 'id' | 'postDate' | 'title' | 'featured' | 'slug' | 'content'>
     & { headerPhoto?: Maybe<(
       { __typename?: 'UploadFile' }
       & Pick<UploadFile, 'id' | 'name'>
@@ -1709,6 +1709,7 @@ export const FeaturedPostsDocument = gql`
     title
     featured
     slug
+    content
   }
 }
     `;

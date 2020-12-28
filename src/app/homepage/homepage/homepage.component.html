@@ -1,10 +1,48 @@
-<h2>Featured Posts</h2>
+<div class="aboutContainer">
+  <img
+    class="aboutPhoto mat-elevation-z8"
+    src="https://cms.mattie.lgbt/uploads/IMG_20200215_181724_978b78245c.jpg"
+  />
+
+  <div class="aboutText">
+    <p>
+      Hi! I'm Mattie Schraeder, a transgender game designer, blogger, and
+      software engineer from Springfield, IL. I came out as transgender January
+      1st, 2017 and this blog is full of my thoughts on being transgender in the
+      Midwest and on the Internet.
+    </p>
+    <p>
+      As a game designer I signed my first board game, Heckin Hounds, to be
+      published by Sapphire City Games and released on Kickstarter in 2021. I
+      also work on the board of directors for the board game convention, Geekway
+      to the West.
+    </p>
+    <p>
+      As a software engineer I work on various projects in C#, Angular,
+      JavaScript, and PHP. Most notably I created an editor for bibliography
+      records called C# MARC Editor, and a Dungeons and Dragons Character Sheet
+      Editor.
+    </p>
+  </div>
+</div>
+
+<div style="clear: both"></div>
 
 <div class="featuredPosts">
-  <mat-card class="flexChild" *ngFor="let f of featuredPosts | async">
+  <mat-card
+    class="flexChild"
+    *ngFor="let f of featuredPosts | async"
+    onclick=""
+  >
     <mat-card-title>{{ f?.title }}</mat-card-title>
     <mat-card-subtitle>
       {{ f?.postDate | amTz: 'America/Chicago' | amTimeAgo }}
     </mat-card-subtitle>
+    <mat-card-content> {{ f?.content | slice: 3:200 }} ... </mat-card-content>
+    <mat-card-actions>
+      <button mat-button (click)="redirect('/blogs/posts/' + f?.slug)">
+        Read more
+      </button>
+    </mat-card-actions>
   </mat-card>
 </div>

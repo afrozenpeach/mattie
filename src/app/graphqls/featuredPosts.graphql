@@ -9,5 +9,6 @@ query featuredPosts {
     title
     featured
     slug
+    content
   }
 }

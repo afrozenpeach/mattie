@@ -16,3 +16,16 @@ mat-card {
     flex-shrink: 1;
     flex-basis: 20%;
 }
+
+.aboutPhoto {
+    margin: 10px;
+    border-radius: 1em;
+    float: left;
+    width: 30%;
+}
+
+.aboutText p {
+    font-size: large;
+    line-height: 2em;
+    text-align: justify;
+}
