@@ -10,6 +10,8 @@ import { Router } from '@angular/router'
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
+  year = new Date().getFullYear()
+
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)
     .pipe(

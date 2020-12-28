@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button'
 import { MatMenuModule } from '@angular/material/menu'
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { MatTooltipModule } from '@angular/material/tooltip'
+import { MatCardModule } from '@angular/material/card'
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,6 +27,7 @@ import { MatTooltipModule } from '@angular/material/tooltip'
     MatButtonModule,
     MatMenuModule,
     MatTooltipModule,
+    MatCardModule,
     FontAwesomeModule,
   ],
   providers: [],
