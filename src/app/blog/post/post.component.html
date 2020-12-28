@@ -1,4 +1,17 @@
 <div *ngFor="let p of post | async">
   <h1>{{ p?.title }}</h1>
+
+  <p class="postDate">
+    <b>Posted: </b>
+    {{ p?.postDate | amTz: 'America/Chicago' | amTimeAgo }} -
+    {{
+      p?.postDate
+        | amTz: 'America/Chicago'
+        | amDateFormat: 'MMMM Do, YYYY, h:mm a'
+    }}
+  </p>
+
   <div [innerHTML]="postContent"></div>
+
+  <span style="font-style: italic">- Mattie Schraeder</span>
 </div>
