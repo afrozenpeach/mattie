@@ -1,0 +1,13 @@
+query featuredPosts {
+  blogPosts(where: { featured: true }, sort: "postDate:desc") {
+    id
+    headerPhoto {
+      id
+      name
+    }
+    postDate
+    title
+    featured
+    slug
+  }
+}

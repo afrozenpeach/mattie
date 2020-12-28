@@ -1620,6 +1620,21 @@ export type BoardgamesQuery = (
   )>>> }
 );
 
+export type FeaturedPostsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type FeaturedPostsQuery = (
+  { __typename?: 'Query' }
+  & { blogPosts?: Maybe<Array<Maybe<(
+    { __typename?: 'BlogPost' }
+    & Pick<BlogPost, 'id' | 'postDate' | 'title' | 'featured' | 'slug'>
+    & { headerPhoto?: Maybe<(
+      { __typename?: 'UploadFile' }
+      & Pick<UploadFile, 'id' | 'name'>
+    )> }
+  )>>> }
+);
+
 export type PostsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
@@ -1677,6 +1692,32 @@ export const BoardgamesDocument = gql`
   })
   export class BoardgamesGQL extends Apollo.Query<BoardgamesQuery, BoardgamesQueryVariables> {
     document = BoardgamesDocument;
+    
+    constructor(apollo: Apollo.Apollo) {
+      super(apollo);
+    }
+  }
+export const FeaturedPostsDocument = gql`
+    query featuredPosts {
+  blogPosts(where: {featured: true}, sort: "postDate:desc") {
+    id
+    headerPhoto {
+      id
+      name
+    }
+    postDate
+    title
+    featured
+    slug
+  }
+}
+    `;
+
+  @Injectable({
+    providedIn: 'root'
+  })
+  export class FeaturedPostsGQL extends Apollo.Query<FeaturedPostsQuery, FeaturedPostsQueryVariables> {
+    document = FeaturedPostsDocument;
     
     constructor(apollo: Apollo.Apollo) {
       super(apollo);
