@@ -1,3 +1,11 @@
+<h2>Archives</h2>
+
 <div *ngFor="let p of posts | async">
-  <a href="/blog/post/{{ p?.slug }}">{{ p?.title }}</a>
+  &bull; <a href="/blog/post/{{ p?.slug }}">{{ p?.title }}</a>
+  -
+  {{
+    p?.postDate
+      | amTz: 'America/Chicago'
+      | amDateFormat: 'MMMM Do, YYYY, h:mm a'
+  }}
 </div>
