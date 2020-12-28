@@ -1,8 +1,5 @@
 <div class="flexContainer">
-  <mat-card
-    class="flexChild mat-elevation-z8"
-    *ngFor="let g of boardgames | async; index as i"
-  >
+  <mat-card class="flexChild" *ngFor="let g of boardgames | async; index as i">
     <mat-card-title>{{ g?.title }}</mat-card-title>
     <mat-card-subtitle>{{ g?.subtitle }}</mat-card-subtitle>
     <img
