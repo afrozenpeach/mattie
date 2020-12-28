@@ -1,1 +1,10 @@
-<p>homepage works!</p>
+<h2>Featured Posts</h2>
+
+<div class="featuredPosts">
+  <mat-card class="flexChild" *ngFor="let f of featuredPosts | async">
+    <mat-card-title>{{ f?.title }}</mat-card-title>
+    <mat-card-subtitle>
+      {{ f?.postDate | amTz: 'America/Chicago' | amTimeAgo }}
+    </mat-card-subtitle>
+  </mat-card>
+</div>
